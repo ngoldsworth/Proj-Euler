@@ -1,6 +1,14 @@
-num = 600851475143
-# num = 13195 # test
+from eulerlib import prime
 
-for i in range(600851475143):
-    # if num % n == 0:
-    print(i)
+num = 600851475143
+#num = 13195 # test
+
+pArray=prime(10000)
+
+for i in range(1, len(pArray)):
+    divisor=pArray(-i)
+    factor = num/i
+    if num % i == 0:
+        if is_prime(factor):
+            print(i, factor, i*factor)
+            exit()
