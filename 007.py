@@ -8,7 +8,7 @@ def is_prime(n):
     return True
 
 primes = []  # initialize a list of prines collected.
-x = 10001
+x = 10
 n = 2
 
 while len(primes) !=x+1: # is the nth number on the list yet? +1 because array starts at zero
