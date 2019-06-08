@@ -1,5 +1,3 @@
-import re
-
 def sum_of_digits(num):
     new = re.sub(r"(\d)(?=\d)" , "\g<1>," , str(num))
     listn = new.split(",")
@@ -7,4 +5,11 @@ def sum_of_digits(num):
     total=sum(results)
     return total
 
-print(sum_of_digits(2**1000))
+def factorial(j: int):
+    prod = 1
+    for num in range(1 , int(j)):
+        prod = prod*int(num)
+
+n = factorial(100)
+print(n)
+print(sum_of_digits(factorial(n)))
