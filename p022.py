@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-nl = open('022names.txt', 'r').read().split(',')
+nl = open('p022_names.txt', 'r').read().split(',')
 nl.sort()
 
 def name_subscore(n: str):

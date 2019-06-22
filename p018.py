@@ -53,7 +53,7 @@ def max_finder(array: np.ndarray):
     return (max_branch_sum, vallist)
 
 
-bigdata = np.genfromtxt('018b.csv', delimiter=',')
+bigdata = np.genfromtxt('p018b.csv', delimiter=',')
 
 print(max_finder(bigdata))
 
