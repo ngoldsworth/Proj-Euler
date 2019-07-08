@@ -3,6 +3,7 @@
 from math import sqrt
 
 def divlist(num: int):
+    # returns list of all divisors of num (including num and 1
     div_list = [1]
     upper = int(sqrt(num) + 1)
     for i in range(2, upper):
@@ -32,7 +33,7 @@ def amicable_list(num: int):
             am_list.append(i)
     return am_list
 
-print(amicabletest(10000))
-print(amicable_list(10000))
-print(sum(amicable_list(10000)))
+# print(amicabletest(10000))
+# print(amicable_list(10000))
+# print(sum(amicable_list(10000)))
 
