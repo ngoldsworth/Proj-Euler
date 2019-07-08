@@ -19,6 +19,3 @@ biglist = []
 for i in range(len(coins)):
     biglist.append(sum_test(coins, i, firstlist))
 
-biglist = list(set(biglist))
-print(len(biglist))
-
