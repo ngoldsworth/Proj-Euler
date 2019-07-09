@@ -1,36 +1,63 @@
 from p021 import divlist as dl
+from itertools import permutations as perm
+import numpy as np
 
-def pandigit_ids(num: int):
-    """
-    Checks if input number has pandigit identity
-    :param num: input number
-    :return: list of all numbers (including num) that have pandigit identity with num
-    """
-    divlist = dl(num)
+digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+def pandigit_identity_check(sequence):
+    # make list to store matches in
     pandigit_list = []
-    for dvsr in divlist:
-        quotient = num / dvsr
-        alist = list(str(int(dvsr)))
-        blist = list(str(int(quotient)))
-        prodlist = list(str(num))
 
-        if len(alist) == len(set(alist)) and len(blist) == len(set(blist)) and len(prodlist) == len(set(prodlist)):
-            checklist = prodlist + alist + blist
-            if len(checklist) == len(set(checklist)):
-                print(dvsr, quotient)
-                if not any(i in alist for i in blist):
-                    checklist = alist + blist + prodlist
-                    checklist = [int(num) for num in checklist]
-                    checklist.sort()
-                    if checklist == [1, 2, 3, 4, 5, 6, 7, 8, 9]:
-                        pandigit_list.append(num)
-                        pandigit_list.append(quotient)
-                        pandigit_list.append(dvsr)
-    pandigit_list = list(set(pandigit_list))
+    # Check if A * BCDE == FGHI
+    a = sequence[0]
+
+    b = sequence[1] * 1000
+    c = sequence[2] * 100
+    d = sequence[3] * 10
+    e = sequence[4] * 1
+
+    f = sequence[5] * 1000
+    g = sequence[6] * 100
+    h = sequence[7] * 10
+    i = sequence[8] * 1
+
+    num1 = a
+    num2 = b + c + d + e
+    num3 = f + g + h + i
+    if num1 * num2 == num3:
+        pandigit_list.append(num1)
+        pandigit_list.append(num2)
+        pandigit_list.append(num3)
+
+    # Check if JK * LMN = PQRS
+    j = sequence[0] * 10
+    k = sequence[1] * 1
+
+    l = sequence[2] * 100
+    m = sequence[3] * 10
+    n = sequence[4] * 1
+
+    p = sequence[5] * 1000
+    q = sequence[6] * 100
+    r = sequence[7] * 10
+    s = sequence[8] * 1
+
+    num4 = j + k
+    num5 = l + m + n
+    num6 = p + q + r + s
+
+    if num4 * num5 == num6:
+        pandigit_list.append(num4)
+        pandigit_list.append(num5)
+        pandigit_list.append(num6)
+
     return pandigit_list
 
-panlist = []
-for num in range(987654321):
-    panlist.extend(pandigit_ids(num))
+permutations = list(perm(digits))
 
+panlist = []
+for tup in permutations:
+    panlist.extend(pandigit_identity_check(tup))
 print(panlist)
+print(sum(list(set(panlist))))
