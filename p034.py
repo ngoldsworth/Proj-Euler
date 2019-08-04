@@ -11,13 +11,12 @@ def digit_factorial_sum(num: int):
 
     return tot
 
+if __name__ == "__main__":
+    pass_list = []
+    for num in range(3,10**8):
+        if num == digit_factorial_sum(num):
+            print(num, num/10**8 * 100)
+            pass_list.append(num)
 
 
-print(digit_factorial_sum(999))
-
-pass_list = []
-for num in range(3,200):
-    if num == digit_factorial_sum(num):
-        pass_list.append(num)
-
-print(pass_list)
+    print(pass_list)
