@@ -1,6 +1,11 @@
 
 // C++ program for implementation of Sieve of Atkin 
 #include <bits/stdc++.h> 
+#include <stdio.h>
+#include <fstream>
+#include <math.h>
+#include <vector>
+
 using namespace std; 
 
 
@@ -55,15 +60,23 @@ int SieveOfAtkin(int limit)
     } 
   
     // Print primes using sieve[] 
-    for (int a = 5; a < limit; a++) 
-        if (sieve[a]) 
-            cout << a << " "; 
+    FILE * fp = fopen("primelist.bin", "wb");
+    vector<int> primes;
+    primes.push_back(2);
+    primes.push_back(3);
+    for (int a = 5; a < limit; a++) {
+        if (sieve[a]) {
+	    primes.push_back(a);
+	}
+    }
+    fwrite(primes.data(), sizeof(int), primes.size(), fp);
+    fclose(fp);
 } 
   
 // Driver program 
 int main(void) 
 { 
-    int limit = 1000000; 
+    int limit = 8300000;
     SieveOfAtkin(limit); 
     return 0; 
 } 
