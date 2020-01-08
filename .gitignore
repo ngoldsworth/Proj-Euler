@@ -1,3 +1,5 @@
 .idea/*
 
 *.out
+
+/primes/savedlist.npy
