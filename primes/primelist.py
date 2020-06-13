@@ -71,4 +71,26 @@ class PrimesList():
             return False
 
 
+def prime_factors_of(num, primelist=None):
+    '''
+    Find the prime factors of a given number
+    :param num: the number to find prime factors of
+    :param primelist: optional argument, assumes providing a list of at least all prime numbers
+     less than `num`. Use this to only generate one primeslist externally, as opposed
+     to generating a new list of primes each time this function is called
+    :return: list of prime factors of `num`
+    '''
+    if not primelist:
+        # If no primelist is given in the function input,
+        # generate a list of all prime numbers less than or equal to `num`
+        primelist = PrimesList(num)
 
+    # List for storing prime factors
+    prime_factors = []
+    for p in primelist:
+        # If p is a factor of `num`, append it to the lis
+        if num % p == 0:
+            prime_factors.append(p)
+
+    # Return the list of prime factors
+    return prime_factors

@@ -36,9 +36,9 @@ def goldbach(num: int, primeslist: list):
 
 
 if __name__ == "__main__":
-    upper_bound = 6000
-    odds, primes = odd_composites_list(upper_bound)
-    print('Made it here')
-    for w in odds:
-        if not goldbach(w, primes):
-            print(w)
+    # upper_bound = 6000
+    # odds, primes = odd_composites_list(upper_bound)
+    # print('Made it here')
+    # for w in odds:
+    #     if not goldbach(w, primes):
+    #         print(w)

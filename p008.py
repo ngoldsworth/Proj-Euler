@@ -1,11 +1,7 @@
 import numpy as np
 
 data =  np.genfromtxt('008.csv', delimiter=',')
-
-for i in range(0, np.size(data)):
-    prod = data[i]
-    for j in range(1,12):
-        prod = prod * data[i+j]
-
-
-
+maxprod = 1
+for j in range(1000):
+    prod = max(np.prod(data[j:j+12]), maxprod)
+    print(maxprod)

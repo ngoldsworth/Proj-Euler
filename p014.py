@@ -1,54 +1,35 @@
+import numpy as np
 
-import collections
-import functools
+def collatz(n):
+    '''
 
-class memoized(object):
-   '''Decorator. Caches a function's return value each time it is called.
-   If called later with the same arguments, the cached value is returned
-   (not reevaluated).
-   '''
-   def __init__(self, func):
-      self.func = func
-      self.cache = {}
-   def __call__(self, *args):
-      if not isinstance(args, collections.Hashable):
-         # uncacheable. a list, for instance.
-         # better to not cache than blow up.
-         return self.func(*args)
-      if args in self.cache:
-         return self.cache[args]
-      else:
-         value = self.func(*args)
-         self.cache[args] = value
-         return value
-   def __repr__(self):
-      '''Return the function's docstring.'''
-      return self.func.__doc__
-   def __get__(self, obj, objtype):
-      '''Support instance methods.'''
-      return functools.partial(self.__call__, obj)
-
-
-
-def collatz(num):
-    if num % 2 == 0:
-        return int(num/2)
+    :param n: first number of Collatz
+    :return: the next integer in a Collatz sequence that starts with `n`
+    '''
+    if n % 2 == 0:
+        return int(n/2)
+    elif n == 1:
+        return None
     else:
-        return int(3*num+1)
+        return int(3*n +1)
 
-@memoized
-def collatz_seq(num):
-    seq = [num]
-    if num == 1:
-        return seq
-    else:
-        seq.extend(collatz_seq(collatz(num)))
-        return seq
 
-maxlen=(0, 1)
-for i in range(1, 20):
-    newlen=(i, len(collatz_seq(i)))
-    if newlen > maxlen:
-        maxlen = newlen
+def collatz_sequence(n):
+    seq = [n]
+    while n != 1:
+        n = collatz(n)
+        seq.append(n)
 
-print(maxlen)
+    return seq
+
+
+if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+    lengths = []
+    for j in range(2, 10**6):
+        lengths.append(len(collatz_sequence(j)))
+
+    print(lengths.index(max(lengths)), max(lengths))
+    plt.plot(lengths)
+    plt.show()
+

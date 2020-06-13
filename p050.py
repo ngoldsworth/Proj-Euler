@@ -10,28 +10,32 @@ def prime_series_sum(plist, jstart, maxnum):
             after and including plist[jstart]
     """
     # when no numbers have yet been considered, the series sums to zero
+    lenplist = len(plist)
     sum = 0
     maxprime = None
     maxrange = None
     j = 0
     while sum <= maxnum:
-        sum += plist[jstart + j]
-        if sum in plist and sum <= maxnum:
-            maxprime = sum
-            maxrange = (jstart, jstart + j)
+        if jstart + j < lenplist:
+            sum += plist[jstart + j]
+            if sum in plist and sum <= maxnum:
+                maxprime = sum
+                maxrange = (jstart, jstart + j)
 
-        j += 1
+            j += 1
+        else:
+            break
 
     return maxprime, maxrange
 
 
 if __name__ == '__main__':
-    upper_bound = 10**4
+    upper_bound = 10**6
     plist = list(PrimesList(upper_bound).list)
     max_range = (0, 0)
     max_range_prime = 0
-    for j in range(len(plist)):
-        a, b = prime_series_sum(plist, j, upper_bound)
+    for prime in plist:
+        a, b = prime_series_sum(plist, plist.index(prime), upper_bound)
         if a != None:
             if b[1] - b[0] > max_range[1] - max_range[0]:
                 max_range = b
