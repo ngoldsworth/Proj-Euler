@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 def checkp(num: int):
     diglst = list(str(num))
     backlst = diglst[::-1]
